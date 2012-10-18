@@ -27,7 +27,7 @@ actions :create
 # :data_bag is the Data Bag to search.
 # :search_id is the Data Bag object you wish to search.
 attribute :data_bag, :kind_of => String, :default => "certificates"
-attribute :search_id, :kind_of => String, :name_attribute => true 
+attribute :search_id, :kind_of => String, :name_attribute => true
 
 # :cert_file is the filename for the managed certificate.
 # :key_file is the filename for the managed key.
@@ -44,10 +44,11 @@ end
 attribute :cert_file, :kind_of => String, :default => "#{node['fqdn']}.pem"
 attribute :key_file, :kind_of => String, :default => "#{node['fqdn']}.key"
 attribute :chain_file, :kind_of => String, :default => "#{node['hostname']}-bundle.crt"
+attribute :chained_cert_file, :kind_of => String, :default => "#{node['fqdn']}-chained.pem"
 
 # The owner and group of the managed certificate and key
 attribute :owner, :kind_of => String, :default => "root"
 attribute :group, :kind_of => String, :default => "root"
 
-# Cookbook to search for blank.erb template 
+# Cookbook to search for blank.erb template
 attribute :cookbook, :kind_of => String, :default => "certificate"

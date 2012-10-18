@@ -40,7 +40,7 @@ action :create do
 
   template "#{new_resource.cert_path}/certs/#{new_resource.cert_file}" do
     source "blank.erb"
-    cookbook new_resource.cookbook 
+    cookbook new_resource.cookbook
     mode "0644"
     owner new_resource.owner
     group new_resource.group
@@ -68,5 +68,16 @@ action :create do
     variables(:file_content => ssl_item['chain'])
     only_if { ssl_item['chain'] }
   end
+
+  template "#{new_resource.cert_path}/certs/#{new_resource.chained_cert_file}" do
+    source "blank.erb"
+    cookbook new_resource.cookbook
+    mode "0644"
+    owner new_resource.owner
+    group new_resource.group
+    variables(:file_content => "#{ssl_item['chain']}\n#{ssl_item['cert']}")
+    only_if { ssl_item['chain'] }
+  end
+
   new_resource.updated_by_last_action(true)
 end
