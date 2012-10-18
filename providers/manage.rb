@@ -75,7 +75,7 @@ action :create do
     mode "0644"
     owner new_resource.owner
     group new_resource.group
-    variables(:file_content => "#{ssl_item['chain']}\n#{ssl_item['cert']}")
+    variables(:file_content => "#{ssl_item['cert']}\n#{ssl_item['chain']}")
     only_if { ssl_item['chain'] }
   end
 
